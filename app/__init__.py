@@ -12,3 +12,9 @@ def create_app(config_name):
 
     #initializing flask extenxtion
     db.init_app(app)
+
+    #Registering blueprints
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    return app
