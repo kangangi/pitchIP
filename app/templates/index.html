@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
-{
-    {% block content %}
 
-    <h1> PITCHER</h1>
+{% block content %}
 
+<h1> PITCHER</h1>
+
+    {% for category in categories %}
+    <li>{{category.category_name}}</li>
+    {% endfor %}
     {% endblock %}
-}
