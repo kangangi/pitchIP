@@ -1,0 +1,8 @@
+Hello {{user.username}}!
+
+Welcome to Pitcher!
+
+We have just seen you have signed up for our application and we want to welcome you to the family. 
+Please enjoy the many pitches, comment on them and add your own!
+
+Have Fun!

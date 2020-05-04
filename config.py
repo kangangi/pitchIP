@@ -6,6 +6,12 @@ class Config:
     SECRET_KEY = 'Skylar'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = 'wanjikukangangi@gmail.com'
+    MAIL_PASSWORD = 'caramel18'
+
 
 
 class ProdConfig(Config):
