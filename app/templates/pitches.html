@@ -6,6 +6,7 @@
 {% if pitches %}
 {% for pitch in pitches %}
 <li>{{pitch.title}}</li>
+<a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}" class= "button"> add Comment </a>
 {% endfor %}
 {%else %}
 <p>There are no pitches in this category</p>

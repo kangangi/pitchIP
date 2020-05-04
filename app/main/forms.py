@@ -13,3 +13,7 @@ class addPitch(FlaskForm):
     description = TextAreaField("Enter Pitch", validators = [Required()])
     submit = SubmitField("Add Pitch")
 
+class addComment(FlaskForm):
+    content = TextAreaField("Add Comment")
+    submit = SubmitField("Add")
+

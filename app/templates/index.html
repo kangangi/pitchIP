@@ -1,11 +1,31 @@
 {% extends 'base.html' %}
-
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
+<div class="container">
+    <div id="header">     
+        <h1><img src="{{url_for('static',filename='photos/mic.png')}}"" alt=""> THE PITCHER</h1> 
+        <h4>It only takes one minute to make an impression</h4>
+    </div>
+    
+    <br>
+    <h2>CATEGORIES</h2>
+    <div class=" row">
+            {% for category in categories %}
+            <div id="category" class="col-md-6">
+                <p>{{category.category_name}}</p>
 
-<h1> PITCHER</h1>
+                <a href="{{url_for('main.pitches_by_category', category_id = category.id)}}"><button
+                        class="btn btn-outline info">View Pitches </button> </a>
+                <hr>
+            </div>
+            {% endfor %}
+    </div>
 
-    {% for category in categories %}
-    <li><a href="{{url_for('main.pitches_by_category', category_id = category.id)}}">{{category.category_name}}</a></li>
-    {% endfor %}
-    {% endblock %}
+</div>
+{% endblock %}

@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required, current_user
 from app.models import User, Pitch, Category, Comment
-from .forms import UpdateProfile,addPitch
+from .forms import UpdateProfile,addPitch,addComment
 from .. import db, photos
 from datetime import datetime
 
@@ -90,3 +90,23 @@ def update_pic(uname):
         db.session.commit()
 
     return redirect(url_for('main.profile', uname = uname))
+
+@main.route("/<user>/<pitch_id>/addcomment", methods = ['GET', 'POST'])
+@login_required
+def comment(user,pitch_id):
+    user= User.query.filter_by(id = user).first()
+    user_id = user.id
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    pitcher_id = pitch.id
+    print('-'*75)
+    print(pitcher_id)
+    title = "Add Comment"
+    form = addComment()
+    if form.validate_on_submit:
+        content = form.content.data
+        new_comment = Comment(content= content, user_id = user_id, pitch_id = pitcher_id)
+        new_comment.save_comment()
+
+        return redirect(url_for('main.index'))
+
+    return render_template("comment.html", title = title,form = form, pitch = pitch)

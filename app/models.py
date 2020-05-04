@@ -99,7 +99,7 @@ class Comment(db.Model):
 
 
     def save_comment(self):
-        db.sesssion.add(self)
+        db.session.add(self)
         db.session.commit()
 
     @classmethod
