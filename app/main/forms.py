@@ -12,3 +12,4 @@ class addPitch(FlaskForm):
     category = SelectField("What is the type of pitch", choices=[("funny", "funny"), ("brainy", "brainy"), ("romantic", "romantic"), ("inspirational", "inspirational"),( "random", "random"), ("business", "business"), ("spiritual", "spiritual")],validators=[Required()])
     description = TextAreaField("Enter Pitch", validators = [Required()])
     submit = SubmitField("Add Pitch")
+

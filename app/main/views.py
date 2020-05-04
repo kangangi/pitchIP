@@ -16,14 +16,13 @@ def index():
     return render_template('index.html', title = title, categories = categories )
 
 @main.route('/pitches/<category_id>')
-def pitches_by_category():
+def pitches_by_category(category_id):
     '''
     View pitches page function that displays the picthes available
     '''
-    category_id = Category.id
     pitches = Pitch.get_category_pitch(category_id)
 
-    return render_template('pitches.html', picthes = pitches)
+    return render_template('pitches.html', pitches = pitches)
 
 @main.route('/user/ <uname>/addpitch',methods =['GET', 'POST'])
 @login_required
@@ -37,16 +36,16 @@ def add_pitch(uname):
     if form.validate_on_submit():
         title = form.title.data
         categorydata = form.category.data
-        category = Category.get_category_name(categorydata)
+        category_id = (Category.get_category_name(categorydata))
         description = form.description.data
-        upvote = 0
-        downvote = 0
+        upvotes = 0
+        downvotes = 0
         
         
-        new_pitch = Pitch(title=title, category= category, description = description, user = user, upvote = upvote, downvote = downvote)
+        new_pitch = Pitch(title=title, category_id = category_id, description = description, user = user, upvotes = upvotes, downvotes = downvotes)
         new_pitch.save_pitch()
 
-        return redirect(url_for("main.pitches_by_category",category = category))
+        return redirect(url_for("main.index"))
     return render_template("addpitch.html", form = form, title = title)
         
 
@@ -57,7 +56,9 @@ def profile(uname):
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user)
+    pitches = Pitch.get_user_pitch(user.id)
+
+    return render_template("profile/profile.html", pitches = pitches , user = user)
 
 
 @main.route('/user/<uname>/update', methods = ['GET','POST'])

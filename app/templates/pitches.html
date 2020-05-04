@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> We are back bitches</h1>
+<h1>Pitches</h1>
+
+{% if pitches %}
+{% for pitch in pitches %}
+<li>{{pitch.title}}</li>
+{% endfor %}
+{%else %}
+<p>There are no pitches in this category</p>
+{% endif %}
 {% endblock %}

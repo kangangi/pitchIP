@@ -27,5 +27,12 @@
 </form>
 {% endif %}
 
+<h2>My Pitches</h2>
+
+{% for pitch in pitches %}
+<li>{{pitch.title}},{{pitch.description}} </li>
+
+{% endfor %}
+
 
 {% endblock %}

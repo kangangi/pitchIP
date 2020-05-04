@@ -6,6 +6,6 @@
 <h1> PITCHER</h1>
 
     {% for category in categories %}
-    <li>{{category.category_name}}</li>
+    <li><a href="{{url_for('main.pitches_by_category', category_id = category.id)}}">{{category.category_name}}</a></li>
     {% endfor %}
     {% endblock %}
