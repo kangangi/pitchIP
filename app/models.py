@@ -17,6 +17,8 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255))
     email = db.Column(db.String,unique = True)
     pitches = db.relationship("Pitch", backref = 'user', lazy = "dynamic")
+    bio = db.Column(db.String(255))
+    profile_pic_url = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
 
     def save_user(self):

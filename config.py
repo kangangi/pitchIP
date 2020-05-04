@@ -4,6 +4,7 @@ class Config:
     '''
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://diana:12345@localhost/pitcher'
     SECRET_KEY = 'Skylar'
+    UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
 
 

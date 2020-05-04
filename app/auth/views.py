@@ -10,7 +10,10 @@ def register():
     form = RegistrationForm()
     title  = "New User"
     if form.validate_on_submit():
-        new_user = User(email = form.email.data, username = form.username.data, password = form.password.data)
+        email = form.email.data
+        username = form.username.data
+        password = form.password.data
+        new_user = User(email = email,username = username, password =password)
         new_user.save_user()
         return redirect(url_for('auth.login'))
         
@@ -32,7 +35,7 @@ def login():
         if user is not None and user.verify_password(user_password):
             login_user(user,remember)
             flash("Welcome to Pitch Perfect")
-            return redirect(url_for("main.index",))
+            return redirect(request.args.get('next') or url_for('main.index'))
         flash("Invalid username or pasword")
     return render_template("auth/login.html", login_form = form,title = title)
 
