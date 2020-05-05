@@ -45,6 +45,6 @@ To access this application on your command line, you need to clone it ```git clo
 Currently, there are no known bugs, contact wanjikukangangi@gmail.com for more info
 
 ## Licence
-This project is under the [MIT](https://github.com/kangangi/pitchIP/blob/master/LICENSE.md) licence
+This project is under the [MIT](https://github.com/kangangi/pitchIP/blob/master/LICENSE) licence
 
 Copyright (c) 2020 Diana Kangangi
