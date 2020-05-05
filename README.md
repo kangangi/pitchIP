@@ -26,20 +26,20 @@ This is an app that allows users to post pitches and views other people's pitche
 
 1. The user will require git, flask, postgres and python3.8+ installed in their machine. To install these two, you can use the following commands
 
- #git
-$ sudo apt install git-all`
+ ```#git```
+```$ sudo apt install git-all```
 
-#python3.6
-$ sudo apt-get install python3.8.
+```#python3.8```
+```$ sudo apt-get install python3.8.```
 
-#flask
-$ pip3 install flask
+```#flask```
+```$ pip3 install flask```
 
-# postgres
-$ sudo apt-get install postgresql postgresql-contrib libpq-dev
+```# postgres```
+```$ sudo apt-get install postgresql postgresql-contrib libpq-dev```
 
 2.  Installation
-To access this application on your command line, you need to clone it ```git clone https://github.com/kangangi/pitchIP.git
+To access this application on your command line, you need to clone it ```git clone https://github.com/kangangi/pitchIP.git```
 
 ## Known Bugs 
 Currently, there are no known bugs, contact wanjikukangangi@gmail.com for more info
