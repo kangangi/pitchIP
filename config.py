@@ -1,3 +1,4 @@
+
 class Config:
     '''
     General configuration parent class
@@ -9,8 +10,8 @@ class Config:
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
-    MAIL_USERNAME = 'wanjikukangangi@gmail.com'
-    MAIL_PASSWORD = 'caramel18'
+    MAIL_USERNAME = 'shiksdiana@gmail.com'
+    MAIL_PASSWORD = 'Email12345!'
 
 
 
