@@ -21,8 +21,7 @@
                 <h2 class="card-title">{{pitch.title}}</h2>
                 <h6 class="card-subtitle mb-2 text-muted">Submitted on :{{pitch.date}}</h6>
                 <p class="card-text">Pitch: {{pitch.description}}</p>
-                <a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}"
-                    class="btn btn-outline-info"> Add Comment </a>
+                <button class="btn btn-outline-info"><a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}">Add Comment </a></button>
             </div>
         </div>
     </div>

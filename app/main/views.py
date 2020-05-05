@@ -44,8 +44,9 @@ def add_pitch(uname):
         
         new_pitch = Pitch(title=title, category_id = category_id, description = description, user = user, upvotes = upvotes, downvotes = downvotes)
         new_pitch.save_pitch()
-
         return redirect(url_for("main.index"))
+
+
     return render_template("addpitch.html", form = form, title = title)
         
 
@@ -91,7 +92,7 @@ def update_pic(uname):
 
     return redirect(url_for('main.profile', uname = uname))
 
-@main.route("/<user>/<pitch_id>/addcomment", methods = ['GET', 'POST'])
+@main.route("/<user>/<pitch_id>/add/comment", methods = ['GET', 'POST'])
 @login_required
 def comment(user,pitch_id):
     user= User.query.filter_by(id = user).first()
@@ -109,4 +110,4 @@ def comment(user,pitch_id):
 
         return redirect(url_for('main.index'))
 
-    return render_template("comment.html", title = title,form = form, pitch = pitch)
+    return render_template("addcomment.html", title = title, form = form, pitch = pitch)
