@@ -1,38 +1,70 @@
 {% extends 'base.html' %}
 
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lato:wght@400;700&display=swap"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div class="container">
-<h2>{{user.username| capitalize}}</h2>
+    <h2>{{user.username| capitalize}}'s Profile</h2>
 
-<!--Displaying user bio-->
-{% if user.bio %}
-<p> {{user.bio}}</p>
-{%else%}
-<p> {{user.username| capitalize}} has no bio </p>
-{% endif %}
+    <div class="row">
+        <div class="col-md-3">
+            {% if user.profile_pic_url %}
+            <img src="{{url_for('static',filename=user.profile_pic_url)}}" alt="" class="img-thumbnail">
+            {%else%}
+            <img src="{{url_for('static',filename='photos/pic.png')}}""  alt=""class=" img-thumbnail">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h3>Bio</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    {% if user.bio %}
 
-{% if user == current_user %}
-<a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
-{% endif %}
+                    <h4> {{user.bio}}</h4>
+                    {%else%}
+                    <h4> {{user.username| capitalize}} has no bio </h4>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {% if user == current_user %}
+                    <button class="btn btn-outline-info"><a
+                            href="{{url_for('main.update_profile',uname=user.username)}}">Edit Bio</a></button>
+                    {% endif %}
+                </div>
+            </div>
 
-{% if user.profile_pic_url %}
-<img src="{{url_for('static',filename=user.profile_pic_url)}}" alt="" class="img-thumbnail">
-{%else%}
-<p>No profile picture</p>
-{% endif %}
-{% if user == current_user %}
-<form action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype="multipart/form-data">
-    <input type="file" name="photo" class="form-control" required>
-    <input type="submit">
-</form>
-{% endif %}
+            {% if user == current_user %}
+            <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post"
+                enctype="multipart/form-data">
+                <label id="label"> Edit Profile Pic</label>
+                <input type="file" name="photo" class="form-control" required>
+                <input type="submit" class="btn btn-outline-info">
+            </form>
+            {% endif %}
+        </div>
+    </div>
 
-<h2>My Pitches</h2>
+    <h2>My Pitches</h2>
 
-{% for pitch in pitches %}
-<li>{{pitch.title}},{{pitch.description}} </li>
-
-{% endfor %}
+    {% for pitch in pitches %}
+    <div id="card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">{{pitch.title}}</h3>
+                <h6 class="card-subtitle mb-2 text-muted">Submitted on :{{pitch.date}}</h6>
+                <p class="card-text">Pitch: {{pitch.description}}</p>
+                <a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}"
+                    class="btn btn-outline-info"> Add Comment </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
 </div>
 {% endblock %}
