@@ -1,0 +1,28 @@
+.card {
+    border: solid #C9ADA7 2px;
+    height: 200px;
+    width: 400px;
+    padding: 20px;
+    margin: 4px;
+    font-size: 25px;
+    font-family: 'Itim', cursive;
+    background-color: #4A4E69;
+    text-align: justify; 
+  }
+
+h1{
+    font-family: 'Fredoka One', cursive;
+    font-size: 60px;
+    text-align: center;
+}
+
+.card-title{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#nothing {
+    font-size: 30px;
+    font-family: 'Itim', cursive; 
+    text-align: center; 
+}

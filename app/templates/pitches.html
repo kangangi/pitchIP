@@ -1,14 +1,34 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h1>Pitches</h1>
 
-{% if pitches %}
-{% for pitch in pitches %}
-<li>{{pitch.title}}</li>
-<a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}" class= "button"> add Comment </a>
-{% endfor %}
-{%else %}
-<p>There are no pitches in this category</p>
-{% endif %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/pitches.css')}}" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lato:wght@400;700&display=swap"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 {% endblock %}
+
+<div class="container">
+    {% block content %}
+    <h1>PITCHES</h1>
+
+    {% if pitches %}
+    {% for pitch in pitches %}
+    <div id="card">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{pitch.title}}</h2>
+                <h6 class="card-subtitle mb-2 text-muted">Submitted on :{{pitch.date}}</h6>
+                <p class="card-text">{{pitch.description}}</p>
+                <a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}"
+                    class="btn btn-outline-info"> Add Comment </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {%else %}
+    <p id ="nothing">There are no pitches in this category</p>
+    {% endif %}
+    {% endblock %}
+</div>
