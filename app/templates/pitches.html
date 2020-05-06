@@ -14,20 +14,38 @@
     <h1>PITCHES</h1>
 
     {% if pitches %}
-    {% for pitch in pitches %}
     <div id="card">
+        {% for pitch in pitches %}
+
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title">{{pitch.title}}</h2>
                 <h6 class="card-subtitle mb-2 text-muted">Submitted on :{{pitch.date}}</h6>
                 <p class="card-text">Pitch: {{pitch.description}}</p>
-                <button class="btn btn-outline-info"><a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}">Add Comment </a></button>
+                <button class=" btn btn-outline-success"><a href="{{url_for('main.upvote', pitch_id = pitch.id)}}">likes
+                        : {{pitch.upvotes}}</i></button>
+                <button class=" btn btn-outline-success"><a href="{{url_for('main.downvote', pitch_id = pitch.id)}}">
+                        dislikes : {{pitch.downvotes}}</i></button>
+
+                {% if current_user.is_authenticated %}
+                <button class="btn btn-outline-info"><a
+                        href="{{url_for('main.comment', uname = current_user.id, pitch_id = pitch.id)}}">Add Comment
+                    </a></button>
+                <button class="btn btn-outline-info"><a
+                        href="{{url_for('main.view_comment',uname = current_user.id ,p_id = pitch.id)}}">View Comment
+                    </a></button>
+
+                {% else %}
+                <br>
+                <a id = "login" href="{{url_for('auth.login')}}">Want to view comments? Sign In here </a>
+                {% endif %}
             </div>
         </div>
+
+        {% endfor %}
     </div>
-    {% endfor %}
     {%else %}
-    <p id ="nothing">There are no pitches in this category</p>
+    <p id="nothing">There are no pitches in this category</p>
     {% endif %}
     {% endblock %}
 </div>

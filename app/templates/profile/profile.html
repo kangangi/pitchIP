@@ -51,20 +51,34 @@
     </div>
 
     <h2>My Pitches</h2>
+    <div id='card' class="">
+        {% for pitch in pitches %}
 
-    {% for pitch in pitches %}
-    <div id="card">
-        <div class="card">
-            <div class="card-body">
+        <div class="card ">
+            <div class="mx-auto card-body">
                 <h3 class="card-title">{{pitch.title}}</h3>
                 <h6 class="card-subtitle mb-2 text-muted">Submitted on :{{pitch.date}}</h6>
                 <p class="card-text">Pitch: {{pitch.description}}</p>
-                <a href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}"
-                    class="btn btn-outline-info"> Add Comment </a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+                <button class=" btn btn-outline-success"><a
+                        href="{{url_for('main.upvote_profile', uname = current_user.id ,pitch_id = pitch.id)}}">likes
+                        : {{pitch.upvotes}}</i></button>
+                <button class=" btn btn-outline-success"><a
+                        href="{{url_for('main.downvote_profile',uname = current_user.id, pitch_id = pitch.id)}}">
+                        dislikes : {{pitch.downvotes}}</i></button>
 
+                <button class="btn btn-outline-info"><a
+                        href="{{url_for('main.comment',uname = current_user.id, pitch_id = pitch.id)}}"> Add Comment
+                    </a></button>
+                <button class="btn btn-outline-info"><a
+                        href="{{url_for('main.view_comment',uname = current_user.id ,p_id = pitch.id)}}">View
+                        Comment </a></button>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
+
+
 {% endblock %}

@@ -7,9 +7,11 @@ This is an app that allows users to post pitches and views other people's pitche
 
 ## How to use
 1. Run the link in the repository and the user will see the home page with various categories of the pitches
-2. The user can select any of the categories to view the pitches in the category
-3. The user can sign up to be able to add pitches of their own by clicking on "Add Pitches in the nav-bar
+2. The user can select any of the categories to view the pitches in the category and vote for them by clicking the like button or dislike button
+3. The user can sign up to be able to add pitches of their own by clicking on "Add Pitches in the nav-bar. 
 4. The user can view their profile and their pitches and edit their profile by clicking on "profile" in the navbar after signing in.
+5. The user can add comments and view comments from the picthes once they have signed in.
+
 
 
 ## Technologies Used

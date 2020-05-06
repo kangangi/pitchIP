@@ -92,22 +92,90 @@ def update_pic(uname):
 
     return redirect(url_for('main.profile', uname = uname))
 
-@main.route("/<user>/<pitch_id>/add/comment", methods = ['GET', 'POST'])
+@main.route("/<uname>/<pitch_id>/add/comment", methods = ['GET', 'POST'])
 @login_required
-def comment(user,pitch_id):
-    user= User.query.filter_by(id = user).first()
-    user_id = user.id
+def comment(uname,pitch_id):
+    user= User.query.filter_by(id = uname).first()
+    #user_id = user.id
     pitch = Pitch.query.filter_by(id = pitch_id).first()
-    pitcher_id = pitch.id
-    print('-'*75)
-    print(pitcher_id)
+    #pitcher_id = pitch.id
+    #print('-'*75)
+    #print(pitcher_id)
     title = "Add Comment"
     form = addComment()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         content = form.content.data
-        new_comment = Comment(content= content, user_id = user_id, pitch_id = pitcher_id)
+        new_comment = Comment(content= content, user_id = user.id, pitch_id = pitch.id)
         new_comment.save_comment()
 
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.profile', uname = user.username))
 
     return render_template("addcomment.html", title = title, form = form, pitch = pitch)
+
+@main.route("/<uname>/<p_id>/comment")
+@login_required 
+def view_comment(uname,p_id):
+    pitch_id = Pitch.query.filter_by(id = p_id).first()
+    user= User.query.filter_by(id = uname).first()
+    print('-'*60)
+    print(pitch_id)
+
+    comments = Comment.get_comments(pitch_id.id)
+    print(comments)
+    print('-'*60)
+
+    return render_template('comment.html', comments = comments) 
+
+@main.route('/upvote_category/<pitch_id>')
+def upvote(pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+
+    counted_upvotes = pitch.upvotes + 1
+
+    pitch.upvotes = counted_upvotes
+    db.session.commit()
+
+    return redirect(url_for('main.pitches_by_category', category_id = pitch.category_id))
+
+@main.route('/<uname>/upvote_profile/<pitch_id>')
+def upvote_profile (uname,pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    user = User.query.filter_by(id= uname ).first()
+
+    counted_upvotes = pitch.upvotes + 1
+
+    pitch.upvotes = counted_upvotes
+    db.session.commit()
+
+    return redirect(url_for('.profile', uname = user.username))
+
+@main.route('/downvote_category/<pitch_id>')
+def downvote(pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+
+    counted_downvotes = pitch.downvotes + 1
+
+    pitch.downvotes = counted_downvotes
+    db.session.commit()
+
+
+    return redirect(url_for('main.pitches_by_category',category_id = pitch.category_id))
+
+@main.route('/<uname>/downvote_profile/<pitch_id>')
+def downvote_profile (uname,pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    user = User.query.filter_by(id= uname).first()
+
+
+    counted_downvotes = pitch.downvotes + 1
+
+    pitch.downvotes = counted_downvotes
+    db.session.commit()
+
+    return redirect(url_for('.profile', uname = user.username))
+
+
+
+
+
+

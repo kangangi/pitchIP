@@ -2,17 +2,23 @@ import unittest
 from app.models import Pitch, User, Comment
 from app import db
 
-class PitchModelTest(unittest.TestCase):
+class CommentModelTest(unittest.TestCase):
     def setUp(self):
         self.new_comment = Comment(content = 'content', user_id = 1, pitch_id =1 )
         self.new_pitch = Pitch(title = "title", description = "Description", upvotes = 1, downvotes = 1, category_id =1, user_id = 1)
         self.new_user = User(username = "diana", email ="diana@gmail.com", bio = "I am awesome", profile_pic_url = "image_url", password = 'diana')
+
+        db.session.add(self.new_pitch)
+        db.session.add(self.new_user)
+        db.session.add(self.new_comment)
+        db.session.commit()
         
 
     def tearDown(self):
         Comment.query.delete()
         Pitch.query.delete()
         User.query.delete()
+        db.session.commit()
 
     def test_save_comment(self):
         self.new_comment.save_comment()
@@ -27,3 +33,4 @@ class PitchModelTest(unittest.TestCase):
         self.new_comment.save_comment()
         get_comments = Comment.get_comments(1)
         self.assertEqual(len(get_comments) == 1)
+    

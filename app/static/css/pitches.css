@@ -1,13 +1,17 @@
 .card {
-    border: solid #C9ADA7 2px;
-    height: 200px;
-    width: 400px;
+    border: solid #C9ADA7 3px;
+    height: 300px;
+    width: 600px;
     padding: 20px;
     margin: 4px;
     font-size: 25px;
     font-family: 'Itim', cursive;
     background-color: #4A4E69;
     text-align: justify; 
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 auto;
   }
 
 h1{
@@ -25,4 +29,8 @@ h1{
     font-size: 30px;
     font-family: 'Itim', cursive; 
     text-align: center; 
+}
+
+#login{
+    font-size: 18px;
 }

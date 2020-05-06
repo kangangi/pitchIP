@@ -1,7 +1,7 @@
 .card {
     border: solid #C9ADA7 3px;
-    height: 300px;
-    width: 600px;
+    height: 200px;
+    width: 300px;
     padding: 20px;
     margin: 4px;
     font-size: 25px;
@@ -13,36 +13,19 @@
     flex-direction: row;
     margin: 0 auto;
   }
-
-
-
-
-h2{
+h1{
     font-family: 'Fredoka One', cursive;
     font-size: 60px;
     text-align: center;
 }
 
-h3{
-    font-size: 40px;
-    font-family: 'Itim', cursive; 
-     
+.card-title{
+    font-size: 35px;
+    font-weight: bold;
 }
 
-p{
-    font-size: 25px;
-    font-family: 'Itim', cursive;
-    color: #C9ADA7
-}
-
-h4{
+#nothing {
     font-size: 30px;
-    font-family: 'Itim', cursive;
-    color: #C9ADA7
-}
-
-#label{
-    font-size: 20px;
-    font-family: 'Itim', cursive;
-    color: #22223B
+    font-family: 'Itim', cursive; 
+    text-align: center; 
 }
